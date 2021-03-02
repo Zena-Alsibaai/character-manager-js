@@ -32,4 +32,8 @@
     }
     getData()
 
+    document.getElementById("newPerso").addEventListener("click", async() => {
+
+    })
+
 })()
