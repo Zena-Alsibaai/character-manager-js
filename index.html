@@ -35,63 +35,60 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <div class="row mt-5 text-center">
-          <div class="col">
-            <button type="button" class="btn btn-danger fs-2 p-4" id="newPerso" >
-              CREATE YOUR CHARACTER
-            </button>
-=======
         <div class="row mt-5 ">
           <div class="col text-center">
-            <button class= "btn btn-danger fs-2 p-4"onclick="document.getElementById('id01').style.display='block'" style="width:auto;">CREATE NEW HERO</button>
->>>>>>> a458d07cfb06e3fd90640738c176dafb75d00fff
+            <button class="btn btn-danger fs-2 p-4" id="createNewPerso">CREATE NEW HERO</button>
           </div>
 
-            <div id="id01" class="modal">
-              
-              <form class="modal-content animate" action="/action_page.php" method="post">
-                <div class="imgcontainer">
+
+          <div id="id01" class="modal">
+
+            <form class="modal-content animate" action="" method="post">
+              <!--<div class="imgcontainer">
                   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                   
-                </div>
-            
-                <div class="container container-modal">
+                </div>-->
 
-                  <div class="form-group row">
-                    <label for="uname"><b>Name :</b></label>
-                    <div class="col">
-                      <input type="text" placeholder="Enter Character Name" name="uname" required>
-                    </div>
+              <div class="container container-modal" id="container-modal">
+
+                <div class="form-group row">
+                  <label for="uname"><b>Name :</b></label>
+                  <div class="col">
+                    <input type="text" id="newName" placeholder="Enter Character Name" name="uname" required>
                   </div>
-                  <div class="form-group row">
-                    <label for="psw"><b>Short description :</b></label>
-                    <div class="col">
-                      <input type="text" placeholder="Describe your character in one line" name="psw" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="uname"><b>Select image :</b></label>
-                    <div class="col-12 mt-2 ">
-                      <input type="file" placeholder="Enter powers" name="uname"  accept="image/png, image/jpeg" id="uname">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="uname"><b>Description :</b></label>
-                    <div class="col">
-                      <textarea   class="form-control fs-2" id="uname" rows="9" ></textarea>
-                    </div>
-                  </div>
-                  <button type="submit">Submit</button>  
                 </div>
-            
-                <div class="container container-modal" style="background-color:#f1f1f1">
-                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <div class="form-group row">
+                  <label for="psw"><b>Short description :</b></label>
+                  <div class="col">
+                    <input type="text" id="shortDescription" placeholder="Describe your character in one line"
+                      name="psw" required>
+                  </div>
                 </div>
-              </form>
-            </div>
+                <div class="form-group row">
+                  <label for="uname"><b>Select image :</b></label>
+                  <div class="col-12 mt-2 ">
+                    <input type="file" placeholder="Enter powers" name="uname" accept="image/png, image/jpeg"
+                      id="newImg">
+                    <img id="imgPreview" style="max-width: 100px;max-height: 50px;" src="unknown">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="uname"><b>Description :</b></label>
+                  <div class="col">
+                    <textarea class="form-control fs-2" id="newDescription" rows="9"></textarea>
+                  </div>
+                </div>
+                <button type="submit" id="createSubmit">Submit</button>
+              </div>
+
+              <div class="container container-modal" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                  class="cancelbtn">Cancel</button>
+              </div>
+            </form>
           </div>
-        
+        </div>
+
       </div>
     </section>
 
@@ -131,6 +128,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
     integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
     crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.0/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./src/js/main.js"></script>
 </body>
 
