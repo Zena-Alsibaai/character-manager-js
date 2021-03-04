@@ -33,9 +33,7 @@ const inputs = Array.from(document.querySelectorAll(".input"));
       const freshHero = await response.json();
       console.log(freshHero);
     });
-})();
 
-(() => {
   const createWindow = document.getElementById("id01"); // on passe le modal en variable
 
   document
