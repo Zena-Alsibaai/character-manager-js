@@ -1,110 +1,153 @@
-
 //const axios = require('axios');
+const inputs = Array.from(document.querySelectorAll(".input"));
+
 (() => {
+  document
+    .querySelector("#createSubmit")
+    .addEventListener("click", async () => {
+      const values = inputs.map(({ value }) => value.trim());
+      console.log(values);
 
-	const createWindow = document.getElementById("id01") // on passe le modal en variable
+      if (values.some((value) => value === "")) {
+        console.error("There's an empty input!");
+        return;
+      }
 
-	document.getElementById('createNewPerso').addEventListener("click", function () {
+      const [name, description, shortDescription] = values;
 
-		resetForm() //appelle le modal
-		affichageWindow(createWindow) //ouvre le modal sur la page
-	})
+      const response = await fetch(
+        `https://character-database.becode.xyz/characters`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            description,
+            shortDescription, //: powers.split(",").map((str) => str.trim()),
+          }),
+        }
+      );
 
-	document.getElementById('createSubmit').addEventListener("click", async () => {
-		const addPerso = newPerso()
-		console.log(addPerso)
+      const freshHero = await response.json();
+      console.log(freshHero);
+    });
+})();
 
+(() => {
+  const createWindow = document.getElementById("id01"); // on passe le modal en variable
 
-		const response = await fetch("https://character-database.becode.xyz/characters", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				name,
-				description,
-				shortDescription,
-				image //powers.split(",").map((str) => str.trim()),
-			}),
+  document
+    .getElementById("createNewPerso")
+    .addEventListener("click", function () {
+      resetForm(); //appelle le modal
+      affichageWindow(createWindow); //ouvre le modal sur la page
+    });
 
-		});
-		hiddenWindow(createWindow)
-		window.location.reload(false)
+  // document
+  //   .querySelector("#createSubmit")
+  //   .addEventListener("click", async () => {
+  //     const nameInput = document.querySelector("#newName").value;
+  //     const shortDescriptionInput = document.querySelector("#shortDescription")
+  //       .value;
+  //     const descriptionInput = document.querySelector("#newDescription").value;
 
-		const freshHero = await response.json();
+  //     // const imgPreview = document.querySelector("#imgPreview");
+  //     // let base64String = "";
 
-		console.log(freshHero);
+  //     // if (imgPreview.src != window.location.href) {
+  //     //   base64String = imgPreview.src.replace("data:", "").replace(/^.+,/, "");
+  //     // } else {
+  //     //   base64String = "";
+  //     // }
 
-	})
+  //     const newCharacter = new Array(
+  //       nameInput,
+  //       shortDescriptionInput,
+  //       descriptionInput
+  //       // base64String
+  //     );
+  //     console.log(newCharacter);
+  //     // const inputs = newPerso();
 
-	// form vide
-	function resetForm() {
-		document.getElementById("newName").value = "";
-		document.getElementById("shortDescription").value = "";
-		document.getElementById("newDescription").value = "";
-		document.getElementById("imgPreview").src = "";
-		document.getElementById("newImg").value = "";
-	}
+  //     // console.log(inputs);
+  //     const values = newCharacter.map(({ value }) => value.trim());
 
-	function newPerso() {
-		const nameInput = document.getElementById("newName").value;
-		const shortDescriptionInput = document.getElementById("shortDescription").value;
-		const descriptionInput = document.getElementById("newDescription").value;
+  //     if (values.some((value) => value === "")) {
+  //       console.error("There's an empty input!");
+  //       return;
+  //     }
 
-		const imgPreview = document.getElementById("imgPreview");
-		let base64String = "";
+  //     const [name, description, shortDescription] = values;
+  //     const response = await fetch(
+  //       "https://character-database.becode.xyz/characters",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           name,
+  //           description,
+  //           shortDescription,
+  //           image, //powers.split(",").map((str) => str.trim()),
+  //         }),
+  //       }
+  //     );
+  //     hiddenWindow(createWindow);
+  //     // window.location.reload(false);
 
-		if (imgPreview.src != window.location.href) {
-			base64String = imgPreview.src
-				.replace('data:', '')
-				.replace(/^.+,/, '');
-		}
-		else {
-			base64String = "";
-		}
+  //     const freshHero = await response.json();
 
-		const newCharacter = new Character(nameInput, shortDescriptionInput, descriptionInput, base64String);
+  //     console.log(freshHero);
+  //   });
 
-		return newCharacter;
-	}
+  // form vide
+  function resetForm() {
+    document.getElementById("newName").value = "";
+    document.getElementById("shortDescription").value = "";
+    document.getElementById("newDescription").value = "";
+    // document.getElementById("imgPreview").src = "";
+    document.getElementById("newImg").value = "";
+  }
 
-	function affichageWindow(window) {
-		window.style.display = "block"
-	}
+  // function newPerso() {
 
-	function hiddenWindow(window) {
-		window.style.display = "none"
-	}
+  //   return newCharacter;
+  // }
 
-	// afficher chaque hero dans sa carte
-	const template = document.querySelector("#template");
-	const target = document.querySelector("#target");
+  function affichageWindow(window) {
+    window.style.display = "block";
+  }
 
-	async function getData() {
-		const response = await fetch(
-			"https://character-database.becode.xyz/characters"
-		);
-		const heroes = await response.json(); //transforme le format de l'url en format json pour pouvoir le lire
+  function hiddenWindow(window) {
+    window.style.display = "none";
+  }
 
-		console.log(heroes);
+  // afficher chaque hero dans sa carte
+  const template = document.querySelector("#template");
+  const target = document.querySelector("#target");
 
-		heroes.forEach(({ name, shortDescription, image }) => {
-			const clone = template.cloneNode(true).content;
-			const img = "data:image/jpeg;base64," + image;
-			console.log(img);
+  async function getData() {
+    const response = await fetch(
+      "https://character-database.becode.xyz/characters"
+    );
+    const heroes = await response.json(); //transforme le format de l'url en format json pour pouvoir le lire
 
-			clone.querySelector(".card-img-top").src = img;
-			clone.querySelector(".card-title").textContent = name;
-			clone.querySelector(".card-text").textContent = shortDescription;
+    console.log(heroes);
 
-			target.appendChild(clone);
-		});
-	}
-	getData();
+    heroes.forEach(({ name, shortDescription, image }) => {
+      const clone = template.cloneNode(true).content;
+      const img = "data:image/jpeg;base64," + image;
+      console.log(img);
 
+      clone.querySelector(".card-img-top").src = img;
+      clone.querySelector(".card-title").textContent = name;
+      clone.querySelector(".card-text").textContent = shortDescription;
 
-
-
-
-
-})()
+      target.appendChild(clone);
+    });
+  }
+  getData();
+})();
