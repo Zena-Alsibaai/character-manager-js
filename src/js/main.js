@@ -140,7 +140,6 @@
     heroes.forEach(({ name, shortDescription, image }) => {
       const clone = template.cloneNode(true).content;
       const img = "data:image/jpeg;base64," + image;
-      console.log(img);
 
       clone.querySelector(".card-img-top").src = img;
       clone.querySelector(".card-title").textContent = name;
