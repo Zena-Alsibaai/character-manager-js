@@ -44,41 +44,40 @@
           <div id="id01" class="modal">
 
             <form class="modal-content animate">
-              <!--<div class="imgcontainer">
+              <!-- <div class="imgcontainer">
                   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                  
-                </div>-->
+                </div> -->
 
               <div class="container container-modal" id="container-modal">
 
                 <div class="form-group row">
-                  <label for="uname"><b>Name :</b></label>
+                  <label for="newName"><b>Name :</b></label>
                   <div class="col">
-                    <input type="text" id="newName" placeholder="Enter Character Name" name="uname" required class="input">
+                    <input type="text" id="newName" placeholder="Enter Character Name" name="newName" required class="input form-control">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="psw"><b>Short description :</b></label>
+                  <label for="shortDescription"><b>Short description :</b></label>
                   <div class="col">
                     <input type="text" id="shortDescription" placeholder="Describe your character in one line"
-                      name="psw" required class="input">
+                      name="shortDescription" required class="input form-control">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="uname"><b>Select image :</b></label>
+                  <label for="newImg"><b>Select image :</b></label>
                   <div class="col-12 mt-2 ">
-                    <input type="file" placeholder="Enter powers" name="uname" accept="image/png, image/jpeg"
-                      id="newImg">
+                    <input type="file" placeholder="Enter powers" name="newImg" accept="image/png, image/jpeg"
+                      id="newImg" class="form-control">
                     <!-- <img id="imgPreview" style="max-width: 100px;max-height: 50px;" src="unknown"> -->
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="uname"><b>Description :</b></label>
+                  <label for="newDescription"><b>Description :</b></label>
                   <div class="col">
-                    <textarea class="form-control fs-2 input" id="newDescription" rows="9" ></textarea>
+                    <textarea class="form-control fs-2 input" id="newDescription" rows="9" name="newDescription" ></textarea>
                   </div>
                 </div>
-                <button type="submit" id="createSubmit">Submit</button>
+                <input formaction="index.html" method="post" type="submit" id="createSubmit">Submit </input>
               </div>
 
               <div class="container container-modal" style="background-color:#f1f1f1">
@@ -114,7 +113,16 @@
             </div>
 
         </template>
-      </div>
+
+        <!-- <div class="form-group row">
+          <label for="shortDescription"><b>Short description :</b></label>
+          <div class="col">
+            <input type="text" id="shortDescription" placeholder="Describe your character in one line"
+              name="shortDescription" required class="input form-control">
+          </div>
+        </div>
+        <button type="submit" id="createSubmit">Submit</button>
+      </div> -->
 
       <div id="target" class="row"></div>
     </section>
