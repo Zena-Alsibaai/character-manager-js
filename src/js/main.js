@@ -1,49 +1,28 @@
-//const axios = require('axios');
-const inputs = Array.from(document.querySelectorAll(".input"));
+
+
+
+
 
 (() => {
-  document
-    .querySelector("#createSubmit")
-    .addEventListener("click", async () => {
-      const values = inputs.map(({ value }) => value.trim());
-      console.log(values);
 
-      if (values.some((value) => value === "")) {
-        console.error("There's an empty input!");
-        return;
-      }
-
-      const [name, description, shortDescription] = values;
-
-      const response = await fetch(
-        `https://character-database.becode.xyz/characters`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            description,
-            shortDescription, //: powers.split(",").map((str) => str.trim()),
-          }),
-        }
-      );
-
-      const freshHero = await response.json();
-      console.log(freshHero);
-    });
-})();
-
-(() => {
-  const createWindow = document.getElementById("id01"); // on passe le modal en variable
-
-  document
-    .getElementById("createNewPerso")
-    .addEventListener("click", function () {
-      resetForm(); //appelle le modal
-      affichageWindow(createWindow); //ouvre le modal sur la page
-    });
+	$(function(){
+		$('form').submit(function(e) {
+		  e.preventDefault()
+		  var $form = $(this)
+		  $.post($form.attr('action'), $form.serialize())
+		  .done(function(data) {
+			$('#id01').html(data)
+			$('#formulaire').modal('hide')
+		  })
+		  .fail(function() {
+			alert('ça ne marche pas...')
+		  })
+		})
+		$('.modal').on('shown.bs.modal', function(){
+		  $('input:first').focus()
+		})
+	  })
+  
 
   // document
   //   .querySelector("#createSubmit")
@@ -140,7 +119,7 @@ const inputs = Array.from(document.querySelectorAll(".input"));
     heroes.forEach(({ name, shortDescription, image }) => {
       const clone = template.cloneNode(true).content;
       const img = "data:image/jpeg;base64," + image;
-      console.log(img);
+      
 
       clone.querySelector(".card-img-top").src = img;
       clone.querySelector(".card-title").textContent = name;
@@ -150,4 +129,46 @@ const inputs = Array.from(document.querySelectorAll(".input"));
     });
   }
   getData();
+
+  const createWindow = document.getElementById("id01"); // on passe le modal en variable
+
+  document
+    .getElementById("createNewPerso")
+    .addEventListener("click", function () {
+      resetForm(); //appelle le modal
+      affichageWindow(createWindow); //ouvre le modal sur la page
+    });
+	/*const inputs = Array.from(document.querySelectorAll(".input"));
+	document
+    .querySelector("#createSubmit")
+    .addEventListener("click", async () => {
+      const values = inputs.map(({ value }) => value.trim());
+      console.log(values);
+
+      if (values.some((value) => value === "")) {
+        console.error("There's an empty input!");
+        return;
+      }
+
+      const [name, description, shortDescription] = values;
+
+      const response = await fetch(
+        `https://character-database.becode.xyz/characters`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            description,
+            shortDescription, //: powers.split(",").map((str) => str.trim()),
+          }),
+        }
+      );
+
+      const freshHero = await response.json();
+      console.log(freshHero);
+    });
+	*/
 })();
