@@ -1,20 +1,23 @@
 //const axios = require('axios');
-const inputs = Array.from(document.querySelectorAll(".input"));
+
+// const values = inputs.map(({ value }) => value.trim());
+// console.log(values);
 
 (() => {
   document
-    .querySelector("#createSubmit")
+    .getElementById("createSubmit")
     .addEventListener("click", async () => {
+      // const name = document.querySelector("#shortDescription").value;
+      // console.log(name);
+      const inputs = Array.from(document.querySelectorAll(".input"));
+
       const values = inputs.map(({ value }) => value.trim());
       console.log(values);
-
       if (values.some((value) => value === "")) {
         console.error("There's an empty input!");
         return;
       }
-
       const [name, description, shortDescription] = values;
-
       const response = await fetch(
         `https://character-database.becode.xyz/characters`,
         {
@@ -29,7 +32,6 @@ const inputs = Array.from(document.querySelectorAll(".input"));
           }),
         }
       );
-
       const freshHero = await response.json();
       console.log(freshHero);
     });
