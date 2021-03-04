@@ -1,23 +1,23 @@
-//const axios = require('axios');
-
-// const values = inputs.map(({ value }) => value.trim());
-// console.log(values);
-
 (() => {
   document
     .getElementById("createSubmit")
     .addEventListener("click", async () => {
-      // const name = document.querySelector("#shortDescription").value;
-      // console.log(name);
-      const inputs = Array.from(document.querySelectorAll(".input"));
+      const name = document.querySelector("#newName").value;
+      const shortDescription = document.querySelector("#shortDescription")
+        .value;
+      const description = document.querySelector("#newDescription").value;
 
-      const values = inputs.map(({ value }) => value.trim());
-      console.log(values);
-      if (values.some((value) => value === "")) {
-        console.error("There's an empty input!");
-        return;
+      let entrees = [];
+      let cles = ["name", "shortDescription", "description"];
+      let values = [];
+      values.push(name, shortDescription, description);
+
+      for (let i = 0; i < cles.length; i++) {
+        entrees.push([cles[i], values[i]]);
       }
-      const [name, description, shortDescription] = values;
+      const newCard = object.fromEntries(entrees);
+      console.log(newCard);
+
       const response = await fetch(
         `https://character-database.becode.xyz/characters`,
         {
@@ -28,7 +28,7 @@
           body: JSON.stringify({
             name,
             description,
-            shortDescription, //: powers.split(",").map((str) => str.trim()),
+            shortDescription,
           }),
         }
       );
@@ -45,63 +45,9 @@
       affichageWindow(createWindow); //ouvre le modal sur la page
     });
 
-  // document
-  //   .querySelector("#createSubmit")
-  //   .addEventListener("click", async () => {
-  //     const nameInput = document.querySelector("#newName").value;
-  //     const shortDescriptionInput = document.querySelector("#shortDescription")
-  //       .value;
-  //     const descriptionInput = document.querySelector("#newDescription").value;
-
-  //     // const imgPreview = document.querySelector("#imgPreview");
-  //     // let base64String = "";
-
-  //     // if (imgPreview.src != window.location.href) {
-  //     //   base64String = imgPreview.src.replace("data:", "").replace(/^.+,/, "");
-  //     // } else {
-  //     //   base64String = "";
-  //     // }
-
-  //     const newCharacter = new Array(
-  //       nameInput,
-  //       shortDescriptionInput,
-  //       descriptionInput
-  //       // base64String
-  //     );
-  //     console.log(newCharacter);
-  //     // const inputs = newPerso();
-
-  //     // console.log(inputs);
-  //     const values = newCharacter.map(({ value }) => value.trim());
-
-  //     if (values.some((value) => value === "")) {
-  //       console.error("There's an empty input!");
-  //       return;
-  //     }
-
-  //     const [name, description, shortDescription] = values;
-  //     const response = await fetch(
-  //       "https://character-database.becode.xyz/characters",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           name,
-  //           description,
-  //           shortDescription,
-  //           image, //powers.split(",").map((str) => str.trim()),
-  //         }),
-  //       }
-  //     );
-  //     hiddenWindow(createWindow);
-  //     // window.location.reload(false);
-
-  //     const freshHero = await response.json();
-
-  //     console.log(freshHero);
-  //   });
+  document.getElementById("cancel").addEventListener("click", function () {
+    hiddenWindow(createWindow);
+  });
 
   // form vide
   function resetForm() {
@@ -111,11 +57,6 @@
     // document.getElementById("imgPreview").src = "";
     document.getElementById("newImg").value = "";
   }
-
-  // function newPerso() {
-
-  //   return newCharacter;
-  // }
 
   function affichageWindow(window) {
     window.style.display = "block";
