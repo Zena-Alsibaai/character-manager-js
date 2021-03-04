@@ -12,6 +12,7 @@
 
 	document.getElementById('createSubmit').addEventListener("click", async () => {
 		const addPerso = newPerso()
+		console.log(addPerso)
 
 
 		const response = await fetch("https://character-database.becode.xyz/characters", {
