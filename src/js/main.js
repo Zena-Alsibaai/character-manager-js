@@ -1,5 +1,27 @@
 (() => {
-  // function pour la création de nouveau character
+  const createWindow = document.getElementById("id01"); // on passe le modal en variable
+  // afficher chaque hero dans sa carte
+  const template = document.querySelector("#template");
+  const target = document.querySelector("#target");
+
+  // form vide
+  function resetForm() {
+    document.getElementById("newName").value = "";
+    document.getElementById("shortDescription").value = "";
+    document.getElementById("newDescription").value = "";
+    // document.getElementById("imgPreview").src = "";
+    document.getElementById("newImg").value = "";
+  }
+
+  function affichageWindow(window) {
+    //modal s affiche
+    window.style.display = "block";
+  }
+
+  function hiddenWindow(window) {
+    window.style.display = "none"; //modal s enleve
+  }
+
   document
     .getElementById("createSubmit")
     .addEventListener("click", async () => {
@@ -19,27 +41,31 @@
 
       const newCard = Object.fromEntries(entrees);
       console.log(newCard);
-      // alert(newCard);
+      alert(newCard);
 
       try {
         const response = await fetch(
-          `https://character-database.becode.xyz/characters`,
+          "https://character-database.becode.xyz/characters",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(newCard),
+            body: JSON.stringify({
+              name: newCard.name,
+              shortDescription: newCard.shortDescription,
+              description: newCard.description,
+            }),
           }
         );
+        console.log(response.status);
         const freshHero = await response.json();
-        console.log(freshHero);
+        console.log(" fff ");
+        return freshHero;
       } catch (error) {
         console.log(error);
       }
     });
-
-  const createWindow = document.getElementById("id01"); // on passe le modal en variable
 
   document
     .getElementById("createNewPerso")
@@ -52,27 +78,7 @@
     hiddenWindow(createWindow);
   });
 
-  // form vide
-  function resetForm() {
-    document.getElementById("newName").value = "";
-    document.getElementById("shortDescription").value = "";
-    document.getElementById("newDescription").value = "";
-    // document.getElementById("imgPreview").src = "";
-    document.getElementById("newImg").value = "";
-  }
-
-  function affichageWindow(window) {
-    window.style.display = "block";
-  }
-
-  function hiddenWindow(window) {
-    window.style.display = "none";
-  }
-
-  // afficher chaque hero dans sa carte
-  const template = document.querySelector("#template");
-  const target = document.querySelector("#target");
-
+  //aller recuperer la liste de heros dans l api et l afficher, la supprimer ou la modifier
   async function getData() {
     const response = await fetch(
       "https://character-database.becode.xyz/characters"
@@ -81,15 +87,15 @@
 
     console.log(heroes);
 
-    heroes.forEach(({ name, shortDescription, image, id }) => {
+    heroes.forEach(({ name, shortDescription, image, id, description }) => {
       const clone = template.cloneNode(true).content;
       const img = "data:image/jpeg;base64," + image;
 
       clone.querySelector(".card-img-top").src = img;
       clone.querySelector(".card-title").textContent = name;
-      clone.querySelector(".card-text").textContent = shortDescription;
+      clone.querySelector(".card-text").textContent =
+        shortDescription + description;
 
-      // function pour delete le character
       clone.querySelector("#delete").addEventListener("click", () => {
         console.log(id);
         fetch(`https://character-database.becode.xyz/characters/${id}`, {
@@ -100,10 +106,16 @@
         });
         document.location.reload();
       });
-      target.appendChild(clone);
 
-      console.log(heroes);
+      clone.querySelector("#edit").addEventListener("click", () => {
+        console.log(id);
+        resetForm(); //appelle le modal
+        affichageWindow(createWindow); //ouvre le modal sur la page
+      });
+
+      target.appendChild(clone);
     });
+    console.log(heroes);
   }
 
   getData();
