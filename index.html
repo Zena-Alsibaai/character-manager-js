@@ -79,7 +79,7 @@
                       name="newDescription"></textarea>
                   </div>
                 </div>
-                <input action="#" methode="post" type="submit" id="createSubmit">Submit </input>
+                <input action="#" method="post" type="submit" id="createSubmit">Submit </input>
               </div>
 
               <div class="container container-modal" style="background-color:#f1f1f1">
@@ -99,37 +99,21 @@
 
           <div class="col-4 text-center p-5">
             <div class="card p-5 rounded">
-              <input type="hidden" id="hidden" >
+              <!-- <input type="hidden" id="hidden" > -->
               <div class="box ">
                 <img src="..." class="card-img-top" alt="..." width="" height="" />
               </div>
               <div class="card-body">
                 <h5 class="card-title"></h5>
-                <p class="card-text">
-
-                </p>
-                <button type="button" class="btn btn-info fs-2" id="delete">Delete</button>
-                <button type="button" class="btn btn-danger fs-2 px-3">
-                  Edit
-                </button>
+                <p class="card-text"></p>
+                <button type="button" class="btn btn-info fs-2" id="delete" method="post">Delete</button>
+                <button type="button" class="btn btn-danger fs-2 px-3" id="edit">Edit</button>
               </div>
             </div>
-
         </template>
-
-        <!-- <div class="form-group row">
-          <label for="shortDescription"><b>Short description :</b></label>
-          <div class="col">
-            <input type="text" id="shortDescription" placeholder="Describe your character in one line"
-              name="shortDescription" required class="input form-control">
-          </div>
-        </div>
-        <button type="submit" id="createSubmit">Submit</button>
-      </div> -->
 
         <div id="target" class="row"></div>
     </section>
-
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
