@@ -70,7 +70,7 @@
   const template = document.querySelector("#template");
   const target = document.querySelector("#target");
 
-  async function getData() {
+  (async function getData() {
     const response = await fetch(
       "https://character-database.becode.xyz/characters"
     );
@@ -78,16 +78,35 @@
 
     console.log(heroes);
 
-    heroes.forEach(({ name, shortDescription, image }) => {
+    heroes.forEach(({ name, shortDescription, image, id }) => {
       const clone = template.cloneNode(true).content;
       const img = "data:image/jpeg;base64," + image;
 
       clone.querySelector(".card-img-top").src = img;
       clone.querySelector(".card-title").textContent = name;
       clone.querySelector(".card-text").textContent = shortDescription;
+      clone.querySelector("#hidden").textContent = id;
 
       target.appendChild(clone);
     });
-  }
-  getData();
+  })();
+
+  // const api = "https://character-database.becode.xyz/characters";
+  // document.getElementById("delete").forEach((btn) => {
+  //   // C'est pour chaque bouton(delete) dans les cartes
+  //   btn.addEventListener("click", (e) => {
+  //     let deleteBtn = e.target.id == "delete";
+  //     let id = e.target.parentElement.dataset.id;
+  //     if (deleteBtn) {
+  //       fetch(`${api} / ${id}`, {
+  //         method: "DELETE",
+  //         headers: {
+  //           "content-type": "application/json",
+  //         },
+  //       })
+  //         .then((res) => res.json())
+  //         .then(() => location.reload());
+  //     }
+  //   });
+  // });
 })();
