@@ -45,11 +45,12 @@
           <div id="id01" class="modal">
 
             <form class="modal-content animate" action="#">
-              <!-- <div class="imgcontainer">
+              <div class="imgcontainer">
                   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                </div>  -->
+                </div> 
 
               <div class="container container-modal" id="container-modal">
+
 
                 <div class="form-group row">
                   <label for="newName"><b>Name :</b></label>
@@ -122,6 +123,11 @@
                 <img src="..." class="card-img-top" alt="..." width="" height="" />
               </div>
               <div class="card-body">
+                <button id="info-btn" type="button"  ><i class="fas fa-info-circle " ></i></button>
+               
+
+               
+                
                 <h5 class="card-title"></h5>
                 <p class="card-text"></p>
                 <button type="button" class="btn btn-info fs-2" id="delete" >Delete</button>
@@ -130,8 +136,59 @@
             </div>
         </template>
 
+        <div id ="info-hero" class="modal">
+          <div class="container container-modal bg-modal" >
+            <div class="row">
+
+              <div class="col-4 box-img">
+                <img src="" alt="" id ="img-hero" class="image-hero">
+            </div>
+
+              <div class="col-8">
+
+                <h4 >Name :</h4>
+                <p id ="name-hero"></p>
+              
+
+              <h4 >Short description :</h4>
+              <p id ="shortDescription-hero"></p>
+              
+              <h4 >Description :</h4>
+              <p id ="description-hero"></p>
+
+            </div>
+
+          <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true"> -->
+            <!-- <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="title">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <img src="" alt="" id ="img-hero">
+                  <h4 >Name :</h4>
+                  <p id ="name-hero"></p>
+
+                  <h4 >Short description : :</h4>
+                  <p id ="shortDescription-hero"></p>
+                  
+                  <h4 >Description :</h4>
+                  <p id ="description-hero"></p>
+                </div>
+                
+              </div>
+            </div> -->
+          </div>
+
+        </div>
+      </div>
+
         <div id="target" class="row"></div>
     </section>
+    
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"

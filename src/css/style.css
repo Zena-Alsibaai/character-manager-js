@@ -55,7 +55,27 @@ section {
   margin-bottom: 15px;
   transition: all 0.3s ease 0s;
 }
+.fa-info-circle {
+  font-size: 3rem;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #c54f31;
+}
+
 /*  Modal  */
+.bg-modal {
+  background-color: #fff;
+  width: 80%;
+  height: auto;
+}
+.bg-modal row {
+  height: 100%;
+}
+.box-img {
+  border: 2px red solid;
+  height: auto;
+}
 
 input[type="text"] {
   width: 100%;
